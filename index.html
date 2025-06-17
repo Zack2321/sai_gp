@@ -1,0 +1,255 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Roblox: Grow a Garden</title>
+  <style>
+    body {
+      font-size: 18px;
+      line-height: 1.5;
+      margin: 0;
+      padding: 20px;
+      background: url('Grow-A-Garden.webp') no-repeat center center fixed;
+      background-size: cover;
+      height: 100vh;
+      color: #000;
+    }
+
+    .container {
+      max-width: 960px;
+      margin: 0 auto;
+      height: calc(100vh - 40px); 
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+    }
+
+    .col-left, .col-right {
+      flex: 1 1 300px;
+      padding: 20px;
+      box-sizing: border-box;
+    }
+
+    p {
+      font-family: "Times New Roman", Times, serif;
+      font-size: 24px;
+      background-color: rgba(214, 255, 91, 0.7);
+      background-size: cover;
+      background-position: center;
+      width: 100%;
+      padding: 20px;
+      text-align: center;
+      border-radius: 10px;
+      transition: all 0.5s ease;
+      min-height: 150px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      backdrop-filter: blur(2px);
+      margin: 0;
+      box-sizing: border-box;
+    }
+
+    select {
+      width: 100%;
+      font-size: 18px;
+      padding: 10px;
+      border-radius: 8px;
+      background-color: #f4f4f4;
+      border: 1px solid #ccc;
+      cursor: pointer;
+      box-sizing: border-box;
+    }
+
+    @keyframes rainbowBG {
+      0% { background-color: rgba(255,0,0,0.7); }
+      14% { background-color: rgba(255,127,0,0.7); }
+      28% { background-color: rgba(255,255,0,0.7); }
+      42% { background-color: rgba(0,255,0,0.7); }
+      57% { background-color: rgba(0,0,255,0.7); }
+      71% { background-color: rgba(75,0,130,0.7); }
+      85% { background-color: rgba(148,0,211,0.7); }
+      100% { background-color: rgba(255,0,0,0.7); }
+    }
+
+    @keyframes discoLights {
+      0% { box-shadow: 0 0 20px red; }
+      25% { box-shadow: 0 0 20px blue; }
+      50% { box-shadow: 0 0 20px green; }
+      75% { box-shadow: 0 0 20px yellow; }
+      100% { box-shadow: 0 0 20px red; }
+    }
+
+    @keyframes glitch {
+      0% { transform: translate(2px, 0); }
+      25% { transform: translate(-2px, 2px); }
+      50% { transform: translate(0, -2px); }
+      75% { transform: translate(2px, 2px); }
+      100% { transform: translate(-2px, 0); }
+    }
+    
+    @keyframes pulseRed {
+      0% { background-color: rgba(139, 0, 0, 0.7); }
+      50% { background-color: rgba(255, 0, 0, 0.7); }
+      100% { background-color: rgba(139, 0, 0, 0.7); }
+    }
+    
+    @keyframes moonGlow {
+      0% { box-shadow: 0 0 30px rgba(200, 230, 255, 0.8); }
+      50% { box-shadow: 0 0 50px rgba(200, 230, 255, 1); }
+      100% { box-shadow: 0 0 30px rgba(200, 230, 255, 0.8); }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-left">
+        <select id="weather">
+          <option value="">Select Garden Effect</option>
+          <option value="planting">🌱 Seed Planting</option>
+          <option value="sprouting">🌿 Sprouting</option>
+          <option value="blooming">🌸 Blooming</option>
+          <option value="harvest">🍎 Harvest Time</option>
+          <option value="rainbow">🌈 Rainbow Shower</option>
+          <option value="disco">🪩 Disco Rain</option>
+          <option value="candy">🍬 Candy Storm</option>
+          <option value="ufo">👽 UFO Sunshine</option>
+          <option value="bubble">🧼 Bubble Blizzard</option>
+          <option value="glitch">📱 Glitch Weather</option>
+          <option value="bloodlit">🩸 Bloodlit Garden</option>
+          <option value="moonlit">🌙 Moonlit Garden</option>
+          <option value="pollinated">🐝 Pollinated Garden</option>
+        </select>
+      </div>
+      <div class="col-right">
+        <p id="para">Welcome to Roblox: Grow a Garden. Select an effect to begin!</p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const select = document.getElementById('weather');
+    const para = document.getElementById("para");
+
+    select.onchange = setGardenStage;
+
+    function setGardenStage() {
+      const choice = select.value;
+
+      para.style.backgroundImage = "none";
+      para.style.backgroundColor = "rgba(214, 255, 91, 0.7)";
+      para.style.color = "#000";
+      para.style.animation = "none";
+      para.style.boxShadow = "none";
+
+      switch (choice) {
+        case 'planting':
+          para.textContent = 'You planted your first seed! The journey begins!';
+          para.style.backgroundImage = "url('images/planting-stage.webp')";
+          para.style.color = "green";
+          break;
+
+        case 'sprouting':
+          para.textContent = 'Tiny green shoots emerge! Growth incoming!';
+          para.style.backgroundImage = "url('images/sprouting-stage.webp')";
+          para.style.color = "darkgreen";
+          break;
+
+        case 'blooming':
+          para.textContent = 'Flowers bloom everywhere! So colorful!';
+          para.style.backgroundImage = "url('images/blooming-stage.webp')";
+          para.style.color = "magenta";
+          break;
+
+        case 'harvest':
+          para.textContent = 'Harvest time! Collect your delicious rewards!';
+          para.style.backgroundImage = "url('images/harvest-stage.webp')";
+          para.style.color = "orange";
+          break;
+
+        case 'rainbow':
+          para.textContent = '🌈 Whoa! Rainbow rain is making plants grow CRAZY fast! 🌈';
+          para.style.backgroundImage = "url('images/rainbow-effect.webp')";
+          para.style.backgroundColor = "rgba(255,255,255,0.7)";
+          para.style.animation = "rainbowBG 3s linear infinite";
+          break;
+
+        case 'disco':
+          para.textContent = '🪩 DISCO MODE ACTIVATED! Plants dancing under the mirror ball! 🪩';
+          para.style.backgroundImage = "url('images/disco-effect.webp')";
+          para.style.backgroundColor = "rgba(0,0,0,0.7)";
+          para.style.color = "cyan";
+          para.style.animation = "discoLights 0.5s linear infinite";
+          break;
+
+        case 'candy':
+          para.textContent = '🍭 CANDY STORM! Your garden is getting sugared up!s';
+          para.style.backgroundImage = "url('images/candy-effect.webp')";
+          para.style.backgroundColor = "rgba(255,192,203,0.7)";
+          para.style.color = "white";
+          break;
+
+        case 'ufo':
+          para.textContent = '👽 UFO BEAMS making plants grow WEIRDLY! 👽';
+          para.style.backgroundImage = "url('images/ufo-effect.webp')";
+          para.style.backgroundColor = "rgba(148,0,211,0.7)";
+          para.style.color = "lime";
+          break;
+
+        case 'bubble':
+          para.textContent = '🧼 BUBBLE BLIZZARD! Everything is soapy clean! 🫧';
+          para.style.backgroundImage = "url('images/bubble-effect.webp')";
+          para.style.backgroundColor = "rgba(173,216,230,0.7)";
+          para.style.color = "white";
+          break;
+
+        case 'glitch':
+          para.textContent = '📱 ERROR! Weather system glitching! Plants acting strange! 💻';
+          para.style.backgroundImage = "url('images/glitch-effect.webp')";
+          para.style.backgroundColor = "rgba(0,0,0,0.7)";
+          para.style.color = "lime";
+          para.style.animation = "glitch 0.1s linear infinite";
+          break;
+          
+        case 'bloodlit':
+          para.textContent = '🩸 BLOODLIT GARDEN! Plants thirst for nutrients... 🩸';
+          para.style.backgroundImage = "url('images/bloodlit-effect.webp')";
+          para.style.color = "white";
+          para.style.animation = "pulseRed 2s linear infinite";
+          break;
+          
+        case 'moonlit':
+          para.textContent = '🌙 MOONLIT GARDEN! Plants glow under the moonlight... ✨';
+          para.style.backgroundImage = "url('images/moonlit-effect.webp')";
+          para.style.backgroundColor = "rgba(10, 10, 50, 0.7)";
+          para.style.color = "silver";
+          para.style.boxShadow = "0 0 30px rgba(200, 230, 255, 0.8)";
+          para.style.animation = "moonGlow 3s ease-in-out infinite";
+          break;
+          
+        case 'pollinated':
+          para.textContent = '🐝 POLLINATED GARDEN! Bees are busy at work! 🍯';
+          para.style.backgroundImage = "url('images/pollinated-effect.webp')";
+          para.style.backgroundColor = "rgba(255, 255, 100, 0.7)";
+          para.style.color = "black";
+          break;
+
+        default:
+          para.textContent = 'Welcome to Roblox: Grow a Garden. Select an effect to begin!';
+          para.style.backgroundImage = "none";
+      }
+    }
+  </script>
+</body>
+</html>
